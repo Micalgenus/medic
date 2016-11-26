@@ -9,6 +9,8 @@ import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
 
+    private MedicSQLite SQL;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -16,6 +18,9 @@ public class MainActivity extends AppCompatActivity {
 
         // Button Listener 등록
         findViewById(R.id.recodingBtn).setOnClickListener(recodingClickListener);
+
+        // Database Init
+        SQL = new MedicSQLite(this, "medic.db", null, 1);
     }
 
     Button.OnClickListener recodingClickListener = new View.OnClickListener() {

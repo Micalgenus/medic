@@ -5,13 +5,30 @@
     android:layout_height="wrap_content"
     android:id="@+id/LinearLayout02">
 
-    <TextView android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="두번째 액티비티 화면입니다. 아래 버튼을 누르시면 액티비가 종료됩니다."
-        android:id="@+id/Activity_2_text"></TextView>
+    <TextView android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="Status" android:id="@+id/StatusTextView"/>
 
-    <Button android:layout_width="fill_parent"
+    <Button
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="액티비티 종료하기"
-        android:id="@+id/terminateActivity"></Button>
+        android:text="Start Recording"
+        android:id="@+id/StartRecordingButton" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Stop Recording"
+        android:id="@+id/StopRecordingButton" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Start Playback"
+        android:id="@+id/StartPlaybackButton" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Stop Playback"
+        android:id="@+id/StopPlaybackButton" />
+
 </LinearLayout>

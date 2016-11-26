@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Medic</string>
+    <string name="recodingStart">녹음 시작</string>
+    <string name="recodingStop">녹음 종료</string>
 </resources>
