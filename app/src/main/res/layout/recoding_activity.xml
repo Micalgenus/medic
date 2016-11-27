@@ -5,30 +5,15 @@
     android:layout_height="wrap_content"
     android:id="@+id/LinearLayout02">
 
-    <TextView android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="Status" android:id="@+id/StatusTextView"/>
+    <Button
+        android:id="@+id/btnStart"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/recodingStart"/>
 
     <Button
-        android:layout_width="wrap_content"
+        android:id="@+id/btnStop"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="Start Recording"
-        android:id="@+id/StartRecordingButton" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Stop Recording"
-        android:id="@+id/StopRecordingButton" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Start Playback"
-        android:id="@+id/StartPlaybackButton" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Stop Playback"
-        android:id="@+id/StopPlaybackButton" />
-
+        android:text="@string/recodingStop"/>
 </LinearLayout>

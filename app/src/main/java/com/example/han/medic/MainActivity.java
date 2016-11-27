@@ -9,7 +9,7 @@ import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
 
-    private MedicSQLite SQL;
+    public static MedicSQLite SQL;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,6 +18,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Button Listener 등록
         findViewById(R.id.recodingBtn).setOnClickListener(recodingClickListener);
+        findViewById(R.id.fileManageBtn).setOnClickListener(fileManageClickListener);
 
         // Database Init
         SQL = new MedicSQLite(this, "medic.db", null, 1);
@@ -25,8 +26,16 @@ public class MainActivity extends AppCompatActivity {
 
     Button.OnClickListener recodingClickListener = new View.OnClickListener() {
         public void onClick(View v) {
-            Log.d("Recoding", "recodingClick");
+            Log.d("Main", "recodingClick");
             Intent intent = new Intent(MainActivity.this, RecodingActivity.class);
+            startActivity(intent);
+        }
+    };
+
+    Button.OnClickListener fileManageClickListener = new View.OnClickListener() {
+        public void onClick(View v) {
+            Log.d("Main", "fileManageClick");
+            Intent intent = new Intent(MainActivity.this, FileManageActivity.class);
             startActivity(intent);
         }
     };
