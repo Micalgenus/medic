@@ -60,10 +60,9 @@ public class FileDetailActivity extends Activity {
 
         if (text == null) {
             String src = MainActivity.SQL.getFileSrc(id);
-
             Log.d("FileDetail", src);
-            text = postAudio(src);
 
+            text = postAudio(src);
             Log.d("text", text);
 
             MainActivity.SQL.InsertTranslate(id, text);

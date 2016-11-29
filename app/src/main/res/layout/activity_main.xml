@@ -4,6 +4,7 @@
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/download"
     android:paddingTop="70dp"
     tools:context="com.example.han.medic.MainActivity">
 
@@ -12,7 +13,7 @@
         android:id="@+id/recodingBtn"
         android:layout_width="150dp"
         android:layout_height="100dp"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="125dp"
         android:layout_marginLeft="25dp" />
 
     <Button
@@ -20,9 +21,8 @@
         android:id="@+id/fileManageBtn"
         android:layout_width="150dp"
         android:layout_height="100dp"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="125dp"
         android:layout_marginLeft="175dp" />
-
 
     <Button
         android:text="Search"

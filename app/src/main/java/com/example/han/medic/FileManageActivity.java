@@ -52,6 +52,7 @@ public class FileManageActivity extends Activity {
 
     void initLayout() {
         layout = new TableLayout(this);
+        layout.setPadding(50, 0, 0, 0);
         layout.setStretchAllColumns(true);
 
         TableRow row = new TableRow(this);
@@ -81,5 +82,4 @@ public class FileManageActivity extends Activity {
             startActivity(intent);
         }
     };
-
 }

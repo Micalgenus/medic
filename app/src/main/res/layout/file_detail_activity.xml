@@ -4,6 +4,13 @@
     android:layout_height="match_parent"
     android:weightSum="1">
 
+    <Button
+        android:text="삭제"
+        android:layout_width="117dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/button3"
+        android:layout_weight="0.04" />
+
     <TextView
         android:id="@+id/detailDate"
         android:text="TextView"

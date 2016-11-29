@@ -13,7 +13,7 @@ import java.util.Date;
  * Created by HAN on 2016-11-26.
  */
 
-class MedicSQLite extends SQLiteOpenHelper {
+public class MedicSQLite extends SQLiteOpenHelper {
 
     private final String audioTable = "audio";
     private final String translateTable = "translate";
