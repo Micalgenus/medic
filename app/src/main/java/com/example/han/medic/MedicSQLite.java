@@ -50,14 +50,19 @@ public class MedicSQLite extends SQLiteOpenHelper {
         onCreate(sqLiteDatabase); // 다시 테이블 생성
     }
 
-    void InsertAudio(String src) {
+    void insertAudio(String src) {
         String currentDateTimeString = DateFormat.getDateTimeInstance().format(new Date());
         DB.execSQL("INSERT INTO " + audioTable + "(src, date) values (\"" + src + "\", \"" + currentDateTimeString + "\");");
     }
 
-    void InsertTranslate(int id, String text) {
+    void insertTranslate(int id, String text) {
         DB.execSQL("INSERT INTO " + translateTable + "(file_id, text) values (\'" + id + "\', \'" + text + "\');");
 
+    }
+
+    void deleteAudio(int id) {
+        DB.execSQL("DELETE FROM " + translateTable + " WHERE `file_id` = " + id);
+        DB.execSQL("DELETE FROM " + audioTable + " WHERE `id` = " + id);
     }
 
     String getAudioRegisterDate(int id) {
@@ -100,5 +105,4 @@ public class MedicSQLite extends SQLiteOpenHelper {
         Cursor c = DB.rawQuery("select `id`, `date` from " + audioTable + ";", null);
         return c;
     }
-
 }

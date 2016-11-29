@@ -4,6 +4,11 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,8 +32,8 @@ import java.net.URL;
 public class FileDetailActivity extends Activity {
 
     private int id;
-    private String response = "";
-    private boolean endResponse = false;
+    private ProgressBar spinner;
+    private boolean start = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,11 +49,7 @@ public class FileDetailActivity extends Activity {
             finish();
         }
 
-        TextView date = (TextView) findViewById(R.id.detailDate);
-        date.setText(getDate());
-
-        TextView text = (TextView) findViewById(R.id.detailText);
-        text.setText(getText());
+        getBodyInfo();
     }
 
     String getDate() {
@@ -62,104 +63,45 @@ public class FileDetailActivity extends Activity {
             String src = MainActivity.SQL.getFileSrc(id);
             Log.d("FileDetail", src);
 
-            text = postAudio(src);
+            text = HttpRequest.postAudio(src);
             Log.d("text", text);
 
-            MainActivity.SQL.InsertTranslate(id, text);
+            MainActivity.SQL.insertTranslate(id, text);
         }
 
         return text;
     }
 
-    String postAudio(String src) {
-        final String file = src;
 
-        new Thread(new Runnable() {
-            public void run() {
-                HttpURLConnection conn = null;
-                DataOutputStream dos = null;
-                DataInputStream inStream = null;
-                String lineEnd = "\r\n";
-                String twoHyphens = "--";
-                String boundary =  "*****";
-                int bytesRead, bytesAvailable, bufferSize;
-                byte[] buffer;
-                int maxBufferSize = 1024 * 1024;
-                String responseFromServer = "";
-                String urlString = "https://node.micalgenus.ml/speech";
+    Button.OnClickListener fileManageClickListener = new View.OnClickListener() {
+        public void onClick(View v) {
+            MainActivity.SQL.deleteAudio(id);
+            Toast.makeText(getApplicationContext(), "삭제되었습니다.", Toast.LENGTH_LONG).show();
+            setResult(RESULT_OK, null);
+            finish();
+        }
+    };
 
-                try {
-                    //------------------ CLIENT REQUEST
-                    FileInputStream fileInputStream = new FileInputStream(new File(file));
-                    // open a URL connection to the Servlet
-                    URL url = new URL(urlString);
-                    // Open a HTTP connection to the URL
-                    conn = (HttpURLConnection) url.openConnection();
-                    // Allow Inputs
-                    conn.setDoInput(true);
-                    // Allow Outputs
-                    conn.setDoOutput(true);
-                    // Don't use a cached copy.
-                    conn.setUseCaches(false);
-                    // Use a post method.
-                    conn.setRequestMethod("POST");
-                    conn.setRequestProperty("Connection", "Keep-Alive");
-                    conn.setRequestProperty("Content-Type", "multipart/form-data;boundary=" + boundary);
-                    dos = new DataOutputStream( conn.getOutputStream() );
-                    dos.writeBytes(twoHyphens + boundary + lineEnd);
-                    dos.writeBytes("Content-Disposition: form-data; name=\"audio\";filename=\\" + file + "\"" + lineEnd);
-                    dos.writeBytes(lineEnd);
-                    // create a buffer of maximum size
-                    bytesAvailable = fileInputStream.available();
-                    bufferSize = Math.min(bytesAvailable, maxBufferSize);
-                    buffer = new byte[bufferSize];
-                    // read file and write it into form...
-                    bytesRead = fileInputStream.read(buffer, 0, bufferSize);
-                    while (bytesRead > 0) {
-                        dos.write(buffer, 0, bufferSize);
-                        bytesAvailable = fileInputStream.available();
-                        bufferSize = Math.min(bytesAvailable, maxBufferSize);
-                        bytesRead = fileInputStream.read(buffer, 0, bufferSize);
-                    }
-                    // send multipart form data necesssary after file data...
-                    dos.writeBytes(lineEnd);
-                    dos.writeBytes(twoHyphens + boundary + twoHyphens + lineEnd);
-                    // close streams
-                    Log.d("Debug", "File is written");
-                    fileInputStream.close();
-                    dos.flush();
-                    dos.close();
+    void getBodyInfo () {
+        if (start) {
+            new Thread(new Runnable() {
+                public void run() {
+                    TextView date = (TextView) findViewById(R.id.detailDate);
+                    date.setText(getDate());
+
+                    TextView text = (TextView) findViewById(R.id.detailText);
+                    text.setText(getText());
+
+                    findViewById(R.id.audioDelete).setOnClickListener(fileManageClickListener);
+
+                    start = false;
                 }
-                catch (MalformedURLException ex) {
-                    Log.e("Debug", "error: " + ex.getMessage(), ex);
-                } catch (IOException ioe) {
-                    Log.e("Debug", "error: " + ioe.getMessage(), ioe);
-                }
-                //------------------ read the SERVER RESPONSE
-                try {
+            }).start();
+        }
 
-                    BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream(), "UTF-8"));
-                    //inStream = new DataInputStream ( conn.getInputStream() );
-                    String str;
-                    endResponse = false;
+        while (start);
 
-                    while (( str = br.readLine()) != null) {
-                        response += str;
-                        Log.d("Debug", "Server Response " + str);
-                    }
-
-                    endResponse = true;
-                    br.close();
-
-                }
-                catch (IOException ioex){
-                    Log.e("Debug", "error: " + ioex.getMessage(), ioex);
-                }
-            }
-        }).start();
-
-        while (!endResponse) ;
-
-        return response;
+        spinner = (ProgressBar)findViewById(R.id.progressBar);
+        spinner.setVisibility(View.GONE);
     }
 }

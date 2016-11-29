@@ -52,6 +52,11 @@ public class RecodingActivity extends Activity {
 
     private void enableButton(int id, boolean isEnable) {
         (findViewById(id)).setEnabled(isEnable);
+        if (isEnable) {
+            (findViewById(id)).setVisibility(View.VISIBLE);
+        } else {
+            (findViewById(id)).setVisibility(View.INVISIBLE);
+        }
     }
 
     private void enableButtons(boolean isRecording) {
@@ -161,7 +166,7 @@ public class RecodingActivity extends Activity {
         deleteTempFile();
 
         // Set database
-        MainActivity.SQL.InsertAudio(getFilename());
+        MainActivity.SQL.insertAudio(getFilename());
     }
 
     private void deleteTempFile() {

@@ -5,15 +5,24 @@
     android:layout_height="wrap_content"
     android:id="@+id/LinearLayout02">
 
-    <Button
+    <ImageButton
         android:id="@+id/btnStart"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/recodingStart"/>
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginLeft="125dp"
+        android:layout_marginTop="200dp"
+        android:scaleType="centerCrop"
+        android:src="@android:drawable/ic_btn_speak_now"
+        android:background="?android:attr/selectableItemBackground"  />
 
-    <Button
+    <ImageButton
         android:id="@+id/btnStop"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/recodingStop"/>
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginLeft="125dp"
+        android:layout_marginTop="-100dp"
+        android:scaleType="centerCrop"
+        android:src="@android:drawable/ic_lock_silent_mode"
+        android:background="?android:attr/selectableItemBackground"  />
+
 </LinearLayout>

@@ -19,6 +19,7 @@ public class MainActivity extends AppCompatActivity {
         // Button Listener 등록
         findViewById(R.id.recodingBtn).setOnClickListener(recodingClickListener);
         findViewById(R.id.fileManageBtn).setOnClickListener(fileManageClickListener);
+        findViewById(R.id.searchBtn).setOnClickListener(searchClickListener);
 
         // Database Init
         SQL = new MedicSQLite(this, "medic.db", null, 1);
@@ -36,6 +37,14 @@ public class MainActivity extends AppCompatActivity {
         public void onClick(View v) {
             Log.d("Main", "fileManageClick");
             Intent intent = new Intent(MainActivity.this, FileManageActivity.class);
+            startActivity(intent);
+        }
+    };
+
+    Button.OnClickListener searchClickListener = new View.OnClickListener() {
+        public void onClick(View v) {
+            Log.d("Main", "searchClick");
+            Intent intent = new Intent(MainActivity.this, SearchActivity.class);
             startActivity(intent);
         }
     };

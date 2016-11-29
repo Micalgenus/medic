@@ -20,6 +20,7 @@
         <activity android:name=".RecodingActivity"/>
         <activity android:name=".FileManageActivity"/>
         <activity android:name=".FileDetailActivity"/>
+        <activity android:name=".SearchActivity" />
     </application>
 
     <uses-permission android:name="android.permission.RECORD_AUDIO" />

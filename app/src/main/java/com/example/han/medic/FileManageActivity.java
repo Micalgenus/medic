@@ -5,10 +5,16 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.ScrollView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
+
+import java.util.ArrayList;
 
 /**
  * Created by HAN on 2016-11-27.
@@ -16,7 +22,8 @@ import android.widget.TextView;
 
 public class FileManageActivity extends Activity {
 
-    private TableLayout layout;
+    private ScrollView layout;
+    private TableLayout tlayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,12 +38,15 @@ public class FileManageActivity extends Activity {
             TextView id = new TextView(this);
             TextView date = new TextView(this);
             id.setText(c.getString(0));
-            id.setPadding(20, 20, 20, 20);
+            id.setTextSize(20);
+            id.setGravity(Gravity.CENTER);
             date.setText(c.getString(1));
-            date.setPadding(20, 20, 20, 20);
+            date.setTextSize(20);
+            date.setGravity(Gravity.CENTER);
 
             Log.d("File", "id:" + id.getText() + ",date:" + date.getText());
 
+            row.setPadding(0, 20, 0, 20);
             row.addView(id);
             row.addView(date);
 
@@ -44,26 +54,37 @@ public class FileManageActivity extends Activity {
 
             row.setOnClickListener(DetailClickListener);
 
-            layout.addView(row);
+            tlayout.addView(row);
         }
 
         setContentView(layout);
     }
 
     void initLayout() {
-        layout = new TableLayout(this);
-        layout.setPadding(50, 0, 0, 0);
-        layout.setStretchAllColumns(true);
+        layout = new ScrollView(this);
+        tlayout = new TableLayout(this);
+
+        TableLayout.LayoutParams lp = new TableLayout.LayoutParams(TableLayout.LayoutParams.MATCH_PARENT, TableLayout.LayoutParams.WRAP_CONTENT);
+        lp.setMargins(50, 0, 0, 0);
+
+        tlayout.setStretchAllColumns(true);
+        tlayout.setLayoutParams(lp);
 
         TableRow row = new TableRow(this);
         TextView column1 = new TextView(this);
         column1.setText("Index");
+        column1.setTextSize(20);
+        column1.setGravity(Gravity.CENTER);
         row.addView(column1);
 
         TextView column2 = new TextView(this);
         column2.setText("Date");
+        column2.setTextSize(20);
+        column2.setGravity(Gravity.CENTER);
         row.addView(column2);
-        layout.addView(row);
+        row.setPadding(0, 100, 0, 30);
+        layout.addView(tlayout);
+        tlayout.addView(row);
     }
 
     View.OnClickListener DetailClickListener = new View.OnClickListener() {
@@ -78,8 +99,16 @@ public class FileManageActivity extends Activity {
             Bundle b = new Bundle();
             b.putInt("id", id);
             intent.putExtras(b);
-
-            startActivity(intent);
+            startActivityForResult(intent, 0);
         }
     };
+
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == 0) {
+            if (resultCode == RESULT_OK) {
+                this.finish();
+
+            }
+        }
+    }
 }
