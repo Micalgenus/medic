@@ -7,12 +7,14 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.ScrollView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -21,14 +23,61 @@ import java.util.ArrayList;
  */
 
 public class FileManageActivity extends Activity {
-
+/*
     private ScrollView layout;
     private TableLayout tlayout;
+*/
+    private ListView listView;
+    private ArrayList<FileListItem> data;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.file_manage_activity);
 
+        listView = (ListView) findViewById(R.id.fileList);
+        data = new ArrayList<>();
+
+        Cursor c = MainActivity.SQL.getAllFile();
+
+        while (c.moveToNext()) {
+            String id = c.getString(0);
+            String date = c.getString(1);
+            FileListItem listItem = new FileListItem(id, date);
+            data.add(listItem);
+        }
+
+        FileListAdapter adapter = new FileListAdapter(FileManageActivity.this, R.layout.file_list_item, data);
+        listView.setAdapter(adapter);
+
+        listView.setOnItemClickListener(ItemClickListener);
+    }
+
+    AdapterView.OnItemClickListener ItemClickListener = new AdapterView.OnItemClickListener() {
+        @Override
+        public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
+//            Toast.makeText(FileManageActivity.this, "" + position, Toast.LENGTH_SHORT).show();
+            String i = parent.getAdapter().getItem(position).toString();
+            int cid =  Integer.parseInt(i);
+            Intent intent = new Intent(FileManageActivity.this, FileDetailActivity.class);
+
+            Bundle b = new Bundle();
+            b.putInt("id", cid);
+            intent.putExtras(b);
+            startActivityForResult(intent, 0);
+        }
+    };
+
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == 0) {
+            if (resultCode == RESULT_OK) {
+                this.finish();
+
+            }
+        }
+    }
+
+/*
         initLayout();
 
         Cursor c = MainActivity.SQL.getAllFile();
@@ -59,7 +108,9 @@ public class FileManageActivity extends Activity {
 
         setContentView(layout);
     }
+*/
 
+/*
     void initLayout() {
         layout = new ScrollView(this);
         tlayout = new TableLayout(this);
@@ -111,4 +162,5 @@ public class FileManageActivity extends Activity {
             }
         }
     }
+*/
 }

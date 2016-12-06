@@ -3,19 +3,43 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginTop="20dp">
+    android:paddingTop="20dp"
+    android:background="@drawable/layout_background">
 
-    <EditText
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp" />
+        android:textSize="60sp"
+        android:gravity="center"
+        android:textColor="#FFFFFF"
+        android:text="SEARCH" />
 
-    <Button
-        android:text="@string/search"
-        android:layout_width="50dp"
+    <EditText
+        android:id="@+id/search_keyword"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="-50dp"
-        android:layout_marginLeft="300dp"
-        android:id="@+id/button" />
+        android:layout_marginTop="10dp"
+        android:paddingLeft="10dp"
+        android:maxLines="1"
+        android:inputType="text"
+        android:hint="Search keyword" />
+
+    <ImageButton
+        android:id="@+id/search"
+        android:layout_width="25dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="-40dp"
+        android:layout_marginLeft="310dp"
+        android:src="@drawable/search"
+        android:scaleType="centerCrop"
+        android:background="?android:attr/selectableItemBackground" />
+
+    <ListView
+        android:id="@+id/searchList"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:divider="#666"
+        android:dividerHeight="1dp">
+    </ListView>
 
 </LinearLayout>

@@ -1,6 +1,8 @@
 package com.example.han.medic;
 
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 
 import java.io.BufferedReader;
 import java.io.DataInputStream;
@@ -12,6 +14,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.net.URLConnection;
 
 /**
  * Created by IS-2 on 2016-11-30.
@@ -20,8 +23,15 @@ import java.net.URL;
 public class HttpRequest {
     private static String response = "";
     private static boolean endResponse = false;
+
+    private static String result;
+    private static String keyword;
+
     static String postAudio(String src) {
         final String file = src;
+
+        response = "";
+        endResponse = false;
 
         new Thread(new Runnable() {
             public void run() {
@@ -110,5 +120,46 @@ public class HttpRequest {
         while (!endResponse) ;
 
         return response;
+    }
+
+
+    static String searchKeyword(String key) {
+        result = "";
+        keyword = key;
+        new Thread(new Runnable() {
+            public void run() {
+                try {
+                    URL url = null;
+                    String sendUrl = "https://node.micalgenus.ml/search/" + keyword;
+                    url = new URL(new String(sendUrl.getBytes("euc-kr"), "euc-kr"));
+
+                    URLConnection con = null;
+                    con = url.openConnection();
+                    String encoding = con.getContentEncoding();
+                    if (encoding == null) {
+                        encoding = "UTF-8";
+                    }
+                    BufferedReader r = new BufferedReader(new InputStreamReader(con.getInputStream(), encoding));
+                    StringBuilder sb = new StringBuilder();
+                    try {
+                        String s;
+                        while ((s = r.readLine()) != null) {
+                            sb.append(s);
+                            sb.append("\n");
+                        }
+                    } finally {
+                        r.close();
+                    }
+                    Log.d("test", sb.toString());
+                    result = sb.toString();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
+
+        while (result == "") ;
+
+        return result;
     }
 }

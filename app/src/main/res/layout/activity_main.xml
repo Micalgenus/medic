@@ -4,48 +4,56 @@
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingTop="70dp"
-    android:paddingLeft="5dp"
-    android:background="@drawable/book"
+    android:paddingTop="20dp"
+    android:background="@drawable/layout_background"
     tools:context="com.example.han.medic.MainActivity">
 
-    <Button
-        android:text="Recoding"
-        android:id="@+id/recodingBtn"
-        android:layout_width="150dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="25dp"
-        android:layout_marginLeft="50dp"
-        android:textSize="20sp"
-        android:background="?android:attr/selectableItemBackground" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="60sp"
+        android:gravity="center"
+        android:textColor="#FFFFFF"
+        android:text="MEDIC" />
 
-    <Button
-        android:text="File Manage"
-        android:id="@+id/fileManageBtn"
-        android:layout_width="150dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="125dp"
-        android:layout_marginLeft="150dp"
-        android:textSize="20sp"
-        android:background="?android:attr/selectableItemBackground"  />
+    <RelativeLayout
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:background="@drawable/main"
+        android:layout_marginTop="130dp"
+        android:layout_marginBottom="50dp">
 
-    <Button
-        android:text="Search"
-        android:id="@+id/searchBtn"
-        android:layout_width="150dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="225dp"
-        android:layout_marginLeft="50dp"
-        android:textSize="20sp"
-        android:background="?android:attr/selectableItemBackground"  />
+        <Button
+            android:id="@+id/recodingBtn"
+            android:layout_width="165dp"
+            android:layout_height="165dp"
+            android:textSize="20sp"
+            android:background="?android:attr/selectableItemBackground" />
 
-    <Button
-        android:text="File Register"
-        android:id="@+id/button2"
-        android:layout_width="150dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="325dp"
-        android:layout_marginLeft="150dp"
-        android:textSize="20sp"
-        android:background="?android:attr/selectableItemBackground"  />
+        <Button
+            android:id="@+id/fileManageBtn"
+            android:layout_width="165dp"
+            android:layout_height="165dp"
+            android:layout_marginLeft="195dp"
+            android:textSize="20sp"
+            android:background="?android:attr/selectableItemBackground"  />
+
+        <Button
+            android:id="@+id/searchBtn"
+            android:layout_width="165dp"
+            android:layout_height="165dp"
+            android:layout_marginTop="200dp"
+            android:textSize="20sp"
+            android:background="?android:attr/selectableItemBackground"  />
+
+        <Button
+            android:id="@+id/registerBtn"
+            android:layout_width="165dp"
+            android:layout_height="165dp"
+            android:layout_marginTop="200dp"
+            android:layout_marginLeft="195dp"
+            android:textSize="20sp"
+            android:background="?android:attr/selectableItemBackground"  />
+
+    </RelativeLayout>
 </RelativeLayout>

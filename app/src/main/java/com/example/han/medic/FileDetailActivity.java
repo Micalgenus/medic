@@ -2,7 +2,9 @@ package com.example.han.medic;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
@@ -32,6 +34,7 @@ import java.net.URL;
 public class FileDetailActivity extends Activity {
 
     private int id;
+    private String src;
     private ProgressBar spinner;
     private boolean start = true;
 
@@ -42,12 +45,16 @@ public class FileDetailActivity extends Activity {
 
         Intent intent = this.getIntent();
         id = intent.getIntExtra("id", 0);
+        src = MainActivity.SQL.getFileSrc(id);
 
         if (id == 0) {
             Log.d("FileDetail", "id is 0");
             Toast.makeText(getApplicationContext(), "ID값은 0이 될 수 없습니다." + id, Toast.LENGTH_LONG).show();
             finish();
         }
+
+        findViewById(R.id.audioDelete).setOnClickListener(fileManageClickListener);
+        findViewById(R.id.audioPlay).setOnClickListener(filePlayClickListener);
 
         getBodyInfo();
     }
@@ -82,6 +89,16 @@ public class FileDetailActivity extends Activity {
         }
     };
 
+
+    Button.OnClickListener filePlayClickListener = new View.OnClickListener() {
+        public void onClick(View v) {
+            Intent intent = new Intent();
+            intent.setAction(android.content.Intent.ACTION_VIEW);
+            intent.setDataAndType(Uri.fromFile(new File(src)), "audio/*");
+            startActivity(intent);
+        }
+    };
+
     void getBodyInfo () {
         if (start) {
             new Thread(new Runnable() {
@@ -91,8 +108,6 @@ public class FileDetailActivity extends Activity {
 
                     TextView text = (TextView) findViewById(R.id.detailText);
                     text.setText(getText());
-
-                    findViewById(R.id.audioDelete).setOnClickListener(fileManageClickListener);
 
                     start = false;
                 }
