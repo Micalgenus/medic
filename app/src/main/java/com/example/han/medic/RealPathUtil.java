@@ -11,10 +11,6 @@ import android.os.Environment;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
 
-/**
- * Created by IS-2 on 2016-11-30.
- */
-
 public class RealPathUtil {
 
     public static String getRealPath(Context context, Uri uri) {

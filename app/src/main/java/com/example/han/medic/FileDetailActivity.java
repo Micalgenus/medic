@@ -27,10 +27,6 @@ import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
 
-/**
- * Created by HAN on 2016-11-28.
- */
-
 public class FileDetailActivity extends Activity {
 
     private int id;

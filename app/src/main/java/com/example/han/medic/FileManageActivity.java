@@ -18,10 +18,6 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
-/**
- * Created by HAN on 2016-11-27.
- */
-
 public class FileManageActivity extends Activity {
 /*
     private ScrollView layout;

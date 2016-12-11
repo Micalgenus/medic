@@ -10,10 +10,6 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-/**
- * Created by 송재형 on 2016-12-02.
- */
-
 public class FileListAdapter extends BaseAdapter {
 
     private LayoutInflater inflater;

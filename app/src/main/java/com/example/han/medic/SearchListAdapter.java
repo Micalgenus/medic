@@ -9,10 +9,6 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-/**
- * Created by IS-2 on 2016-11-30.
- */
-
 public class SearchListAdapter extends BaseAdapter {
 
     private LayoutInflater inflater;

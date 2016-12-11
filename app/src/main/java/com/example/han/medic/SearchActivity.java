@@ -14,10 +14,6 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-/**
- * Created by IS-2 on 2016-11-30.
- */
-
 public class SearchActivity extends Activity {
 
     private ListView listView;

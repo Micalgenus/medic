@@ -9,10 +9,6 @@ import android.util.Log;
 import java.text.DateFormat;
 import java.util.Date;
 
-/**
- * Created by HAN on 2016-11-26.
- */
-
 public class MedicSQLite extends SQLiteOpenHelper {
 
     private final String audioTable = "audio";

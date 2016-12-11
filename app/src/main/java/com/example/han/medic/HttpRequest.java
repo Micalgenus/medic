@@ -16,10 +16,6 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 
-/**
- * Created by IS-2 on 2016-11-30.
- */
-
 public class HttpRequest {
     private static String response = "";
     private static boolean endResponse = false;
@@ -45,7 +41,7 @@ public class HttpRequest {
                 byte[] buffer;
                 int maxBufferSize = 1024 * 1024;
                 String responseFromServer = "";
-                String urlString = "https://node.micalgenus.ml/speech";
+                String urlString = "https://node.vrmedic.ml/speech";
 
                 try {
                     //------------------ CLIENT REQUEST
@@ -130,7 +126,7 @@ public class HttpRequest {
             public void run() {
                 try {
                     URL url = null;
-                    String sendUrl = "https://node.micalgenus.ml/search/" + keyword;
+                    String sendUrl = "https://node.vrmedic.ml/search/" + keyword;
                     url = new URL(new String(sendUrl.getBytes("euc-kr"), "euc-kr"));
 
                     URLConnection con = null;
