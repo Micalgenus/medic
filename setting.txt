@@ -1,0 +1,3 @@
+android : LG G2 (5.0.1 Lolipop)
+node.js : 6.9.1
+php : 5.4.16

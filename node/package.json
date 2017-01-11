@@ -1,0 +1,32 @@
+{
+  "name": "public_html",
+  "version": "1.0.0",
+  "description": "NodeJS Test",
+  "main": "index.js",
+  "scripts": {
+    "start": "npm install && supervisor app.js",
+    "start-dev": "npm install && node app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "child_process": "^1.0.2",
+    "cluster": "^0.7.7",
+    "express": ">= 4.14.0",
+    "fs": "0.0.1-security",
+    "google-speech": "0.0.5",
+    "google-speech-api": "^1.2.0",
+    "google-trends-api": "^3.0.1",
+    "iconv": "^2.2.1",
+    "iconv-lite": "^0.4.15",
+    "jsdom": "^9.8.3",
+    "multer": "^1.2.0",
+    "multiparty": "^4.1.2",
+    "path": "^0.12.7",
+    "request": "^2.79.0",
+    "sequelize": ">= 3.23.2",
+    "urlencode": "^1.1.0"
+  }
+}
